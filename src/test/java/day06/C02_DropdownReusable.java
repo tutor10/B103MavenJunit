@@ -44,6 +44,12 @@ public class C02_DropdownReusable {
     @Test
     public void selectFromDropdown(){
         selectFromDropdown(driver.findElement(By.xpath("//select[@id='year']")), "2005");//2005 i secti
+        selectFromDropdown(driver.findElement(By.xpath("//select[@id='month']")), "November");
+        selectFromDropdown(driver.findElement(By.id("day")), "10");
+
+        selectFromDropdown(driver.findElement(By.id("state")),"Texas" );
+
+
     }
-//    NOTE: sonraki dersde tekrar ve kullanimi
+
 }
