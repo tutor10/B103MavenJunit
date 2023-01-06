@@ -34,9 +34,9 @@ public class C02_DropdownReusable {
 //        selectFromDropdown(driver.findElement(By.id("day")), "12"); -> Day 12
 //        Gonderilen dropdown elemention tum optionslari alinir
         List<WebElement> options = dropdown.findElements(By.tagName("option"));//Tum option tagli elementleri aliyorum
-        for (WebElement eachOption : options){
-            if (eachOption.getText().equals(secenek)){
-                eachOption.click();
+        for (WebElement w : options){
+            if (w.getText().equals(secenek)){
+                w.click();
                 break;
             }
         }

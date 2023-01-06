@@ -1,5 +1,6 @@
 package day07;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import utilities.TestBase;
@@ -17,5 +18,9 @@ public class C03_DismissAlert extends TestBase {
         driver.switchTo().alert().dismiss();// dismiss(); CANCEL secenegini tikliyoruz
 
         // ve result mesajının "You clicked: Cancel" oldugunu test edin.
+
+        String actualMesaj=driver.findElement(By.xpath("//*[@id='result']")).getText();
+        String expectedMesaj ="You clicked: Cancel";
+        Assert.assertEquals(expectedMesaj,actualMesaj);
     }
 }
