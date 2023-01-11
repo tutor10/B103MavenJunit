@@ -1,0 +1,37 @@
+***HOW DO YOU FIND THE NUMBER OF IFRAME ON A PAGE?-BIR SAYFADAKI TOPLAM IFRAME SAYISINI NASIL BULURUZ?
+
+---Iframe ler Iframe tagi kullanilark olusturulur.Bu drurumda find elements
+   by frame locatorini kullanarakm tum Iframeleri bulurum
+
+-driver.findElements(By.tagName("iframe"));
+-driver.findElements(By.xpath("//iframe"));
+------------------------------------------------------------------------------------------------------------------------
+
+***EXPLAIN HOW YOU CAN SWITCH BACK FROM A MAIN PAGE? TEKRAR ANA SAYFAYA NASIL DONERSIN?
+
+---2 farkli yol vardir.
+---defaultContent yada parentFrame metotlarini kullanarak gecis yapabiliriz
+
+------------------------------------------------------------------------------------------------------------------------
+
+***WHAT IS THE DIFFERENCES BETWEEN defaultContent and parentFrame?defaultContent yada parentFrame arasindaki farklar nelerdir?
+
+---Oncelikle her ikiside frame in disina cikmamizi saglar,Ama defaultContent direk ana sayfaya atlatir,
+   parentFrame ise bir ust seviyeye atlatir.
+
+------------------------------------------------------------------------------------------------------------------------
+
+***WHAT MIGHT BE REASON FOR YOUR TEST CASE TO FAIL?BIR TEST CASE IN FAIL ETME SEBEPLERI NELER OLABILIR?
+
+1-Yanlis Locator.Cozum:Tekrar Elementi locate etmek.Degisken element var ise ona gore dynamic bir xpath yazariz.
+
+2-Wait / Syncronization/Bekleme Problemi:Cozum:Implicit wait de yeterli sure oldugundan emin oluruz.Osureyi arttirabiliriz.
+  30 saniye verilebilir.Explicit wait kullanilabilir.
+
+3-Iframe.Cozum:switch to iframe
+
+4-Alert.Cozum:switch to alert
+
+5-New Window(Yeni Pencere):switch to window
+
+
