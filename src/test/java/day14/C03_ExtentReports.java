@@ -4,6 +4,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import utilities.TestBase;
 
 import java.text.SimpleDateFormat;
@@ -49,5 +50,22 @@ public class C03_ExtentReports extends TestBase {
 
         //Raporu projeme ekliyorum
         extentReports.attachReporter(extentHtmlReporter);
+
+        //        Extent Test objesi ni olustur
+
+        extentTest = extentReports.createTest("Extent Report Login Test","Smoke Test Raporu");
+
+//        TUM AYARLAR BITTI. EXTENT TEST OBJESI ILE LOGLAMA(RAPORA YAZDIRMA) ISLEMINI YAPABILIRIM
+        extentTest.pass("Kullanici ana sayfaya gider");
+        driver.get("https://www.techproeducation.com");
+
+//        LMS SAYFASINA GIDELIM
+        extentTest.pass("Kullanici LMS sayfasina gider");
+        driver.findElement(By.linkText("LMS LOGIN")).click();
+
+//        TEST BITTI
+        extentTest.pass("TEST BASARIYLA GERCEKLESDI");
+        //        RAPORU GOSTER. RAPORUN OLUSMASI ICIN BU ADIM ZORUNLUDUR
+        extentReports.flush();
     }
 }
