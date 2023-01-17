@@ -28,11 +28,6 @@ public class C02_WebTables extends TestBase {
         }
 
 
-
-//        Task 5 : Iki parametreli bir Java metot oluşturalım: printData
-//        Parameter 1 = row numarasi
-//        Parameter 2 = column numarasi
-//        printData(2,3);  => 2nd row, 3rd column daki datayı print etsin
     }
 
     @Test
@@ -69,5 +64,20 @@ public class C02_WebTables extends TestBase {
 
     }
 
+//        Task 5 : Iki parametreli bir Java metot oluşturalım: printData
+//        Parameter 1 = row numarasi
+//        Parameter 2 = column numarasi
+//        printData(2,3);  => 2nd row, 3rd column daki datayı print etsin
 
+    public void printData(int satir, int sutun){
+        driver.get("https://the-internet.herokuapp.com/tables");
+        String myXpath = "//table[@id='table1']//tbody//tr["+satir+"]//td["+sutun+"]";
+        System.out.println(driver.findElement(By.xpath(myXpath)).getText());
+    }
+    @Test
+    public void printDataTest(){
+        printData(2,3);//fbach@yahoo.com
+        printData(1,2);//John
+    }
 }
+
