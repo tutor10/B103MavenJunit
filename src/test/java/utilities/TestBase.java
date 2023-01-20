@@ -255,5 +255,38 @@ public abstract class TestBase {
         js.executeScript("arguments[0].setAttribute('value','"+metin+"')",element);
 
     }
+    //    input elementindeki degerleri(value) al-COK YAYGIN DEGIL
+    //   Belirli bir WebElement'in id değerini String olarak alır ve value attribute değerini String olarak döndürür
+//    return
+//    document HTML'E GIT
+//    .getElementById('" + idOfElement + "') ID'si VERILEN ELEMENTI BUL
+//    .value")
+//    .toString();
+    public void getValueByJS(String idOfElement) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        String text = js.executeScript("return document.getElementById('" + idOfElement + "').value").toString();
+        System.out.println("Kutudaki value: " + text);
+        //        NOT: document.querySelector("p").value; -> TAG KULLANILABILIR
+//             document.querySelector(".example").value; -> CSS DEGERI KULLANILABILIR
+//             document.querySelector("#example").value; -> CSS DEGERI KULLANILABILIR
+
+        //   Belirli bir WebElement'in id değerini String olarak alır ve value attribute değerini String olarak döndürür
+/*
+        JavaScriptExecutor ile input elementindeki değerleri almak için aşağıdaki adımları izleyebilirsiniz:
+        Web sayfasındaki input elementini locate etmek için WebDriver kullanabilirsiniz.
+
+                Örneğin, "id" veya "name" attribute'una göre elementi seçebilirsiniz.
+        JavaScriptExecutor'u kullanarak, input elementinin "value" attribute'unu alabilirsiniz.
+
+        Örnek olarak aşağıdaki gibi bir kod kullanabilirsiniz:
+
+        WebElement element = driver.findElement(By.id("inputId")); JavascriptExecutor js = (JavascriptExecutor) driver; String value = (String) js.executeScript("return arguments[0].value", element);
+
+        executeScript metodu ile input elementinin value attribute'unu almış oldunuz.
+        Not: Bu kod örneği sadece id attribute'una göre elementi seçer.
+        Eğer elementi başka bir yolla seçmek isterseniz, locate etme kodunu değiştirmeniz gerekebilir.
+ */
+    }
+
 }
 
