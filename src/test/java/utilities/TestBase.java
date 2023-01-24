@@ -1,5 +1,8 @@
 package utilities;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
@@ -30,6 +33,15 @@ public abstract class TestBase {
     //    Sebepi child classlarda gorulebilir olmasi
     protected static WebDriver driver;
 
+    /*
+1- <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports --> pom.xml'e yüklemek
+2- Eğer extentReport almak istersek ilk yapmamız gereken ExtentReport class'ından bir obje oluşturmak
+3- HTLM formatında düzenleneceği için ExtentHtmlReporter class'ından obje oluşturmak
+ */
+    protected ExtentReports extentReports;//Raporlamayı başlatırız
+    protected ExtentHtmlReporter extentHtmlReporter;//Raporumu HTLM formatında düzenler
+    protected ExtentTest extentTest;//Test asamalarinia extenTest objesi ile bilgi ekleriz.
+
     //    setUp
     @Before
     public void setup() {
@@ -40,12 +52,26 @@ public abstract class TestBase {
         //Thread.sleep(20);//HARD WAIT TAM 20 SANIYE BEKLE.JAVA
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));//20 SANIYEYE KADAR BEKLE .SELENIUM
 
+        //----------------------------------------------------------------
+        extentReports = new ExtentReports();
+        String tarih = new SimpleDateFormat("hh_mm_ss_ddMMyyyy").format(new Date());
+        String dosyaYolu = "target/ExtentReports/htmlreport"+tarih+".html";
+        extentHtmlReporter = new ExtentHtmlReporter(dosyaYolu);
+        extentReports.attachReporter(extentHtmlReporter);
+        //Raporda gözükmesini istediğimiz bilgiler için
+        extentReports.setSystemInfo("Browser","Chrome");
+        extentReports.setSystemInfo("Tester","Ugur");
+        extentHtmlReporter.config().setDocumentTitle("Extent Report");
+        extentHtmlReporter.config().setReportName("Test Sonucu");
+        //extentTest=extentReports.createTest("Extent Tests","Test Raporu");
+
     }
 
     //tearDown
     @After
     public void tearDown() {
         waitFor(5);
+        extentReports.flush();
         //driver.quit();
     }
 
